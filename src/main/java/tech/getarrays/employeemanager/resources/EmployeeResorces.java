@@ -7,7 +7,7 @@ import tech.getarrays.employeemanager.model.Employee;
 import tech.getarrays.employeemanager.service.EmployeeService;
 
 import java.util.List;
-
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeResorces {
@@ -35,13 +35,15 @@ public class EmployeeResorces {
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
         Employee updateEmployee = employeeService.updateEmployee(employee);
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 
-    @PostMapping("/delete/{id}")
+    //    @RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+//    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id){
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
